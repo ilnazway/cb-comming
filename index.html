@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контроль входа</title>
+
+  <script src="./lib/vue-3.2.9.global.prod.js"></script>
+  <script src="./lib/vuex-4.0.2.global.prod.js"></script>
+  <script src="./lib/vue-i18n-9.1.7.global.prod.js"></script>
+
+  <link href="./lib/primevue-3.11.0/saga-blue/theme.css" rel="stylesheet">
+  <link href="./lib/primevue-3.11.0/primevue.min.css" rel="stylesheet">
+  <link href="./lib/primeflex-3.1.2/saga-blue.css" rel="stylesheet">
+  <link href="./lib/primeflex-3.1.2/primeflex.min.css" rel="stylesheet">
+  <link href="./lib/primeicons-5.0.0/primeicons.css" rel="stylesheet">
+  <script src="./lib/primevue-3.11.0/primevue.min.js"></script>
+
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    const app = Vue.createApp({
+      setup(props, { emit }) {
+        Vue.onMounted(_ => console.log('app mounted'));
+        return {}
+      },
+
+      template: /*html*/`
+        <div>Root</div>
+      `
+    });
+    // app.
+    app.mount('#root');
+  </script>
+
+  <cb-test name="test5"></cb-test>
+  <div id="cb-comming"></div>
+  <script type="module" src="./components/index.js"></script>
+</body>
+</html>
