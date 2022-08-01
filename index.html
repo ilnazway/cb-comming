@@ -23,7 +23,7 @@
   <script type="module">
     const app = Vue.createApp({
       setup(props, { emit }) {
-        Vue.onMounted(_ => console.log('app mounted'));
+        Vue.onMounted(_ => console.log(''));
         return {}
       },
 
@@ -37,6 +37,11 @@
 
   <cb-test name="test5"></cb-test>
   <div id="cb-comming"></div>
+  <div id="cb-comming3">
+    <my-component class="baz boo"></my-component>
+  </div>
+
+  <script src="./components/cbTestComming.js"></script>
   <script type="module" src="./components/index.js"></script>
 </body>
 </html>
