@@ -4,17 +4,14 @@
 
 const CommingComponent = {
   setup() {
-    const value1 = Vue.ref('');
+    // const inputValue = Vue.ref('');
 
-    Vue.onMounted(() => {
-      
-    })
-
-    return { value1 };
+    // return { inputValue };
   },
   
   data() {
     return {
+      inputValue: '',
       img: {
         test: 'pi-check'
       },
@@ -29,7 +26,8 @@ const CommingComponent = {
         input: [
           'w-12',
           'md:w-8',
-          'line-height-4'
+          'line-height-3',
+          'text-2xl'
         ],
         message: [
           'w-12',
@@ -48,6 +46,11 @@ const CommingComponent = {
     }
   },
 
+  mounted() {
+    this.focusInput();
+    debounceInput: _.debounce(this.sendValue(), 250);
+  },
+
   methods: {
     focusInput() {
       let input = document.querySelector('#input_code');
@@ -55,24 +58,30 @@ const CommingComponent = {
 
     },
     sendValue() {
-      console.log(this.value1);
+      // console.log(e.target.value);
+      // console.log(event.type + ' - ' + event.clipboardData.getData('text/plain'));
+      console.log('ok');
+    },
+  },
+
+  computed: {
+    lookInput() {
+      return this.inputValue !== '' ? `Good` : 'Lose';
     }
   },
 
-  mounted() {
-    this.focusInput();
-  },
 
   template: /*html*/`
+    {{ lookInput }}
     <div class="comming" :class="styles.comming">
       <h1 class="comming__title">{{ comming.title }}</h1>
-      <p-inputtext id="input_code" :class="styles.input" @blur="focusInput" @paste="sendValue()" type="password" v-model="value1"></p-inputtext>
-      <p-message :class="styles.message" :life="5000" :sticky="false" severity="success">{{ message.success }}</p-message>
+      <p-inputtext id="input_code" :class="styles.input" v-model="inputValue" @blur="focusInput" @input="debounceInput" type="password"></p-inputtext>
+      <!-- <p-message :class="styles.message" :life="5000" :sticky="false" severity="success">{{ message.success }}</p-message>
       <p-message :class="styles.message" :icon="'pi-apple'" severity="info">
         {{ message.info }}
       </p-message>
       <p-message :class="styles.message" class="pi pi-check" severity="warn">{{ message.warn }}</p-message>
-      <p-message :class="styles.message" :icon="'hidden'" severity="error">{{ message.error }}</p-message>
+      <p-message :class="styles.message" :icon="'hidden'" severity="error">{{ message.error }}</p-message> -->
     </div>
   `,
   components: {
