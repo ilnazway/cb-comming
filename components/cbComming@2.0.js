@@ -48,14 +48,19 @@ const CommingComponent = {
 
   mounted() {
     this.focusInput();
-    debounceInput: _.debounce(this.sendValue(), 250);
+    debounceInput: _.debounce(this.sendValue, 250);
+    
   },
 
   methods: {
     focusInput() {
       let input = document.querySelector('#input_code');
       input.focus();
-
+      setInterval(() => {
+        if (document.activeElement.tagName == 'BODY') {
+          input.focus();
+        };
+      }, 7000);
     },
     sendValue() {
       // console.log(e.target.value);
@@ -75,7 +80,7 @@ const CommingComponent = {
     {{ lookInput }}
     <div class="comming" :class="styles.comming">
       <h1 class="comming__title">{{ comming.title }}</h1>
-      <p-inputtext id="input_code" :class="styles.input" v-model="inputValue" @blur="focusInput" @input="debounceInput" type="password"></p-inputtext>
+      <p-inputtext id="input_code" :class="styles.input" v-model="inputValue" @input="sendValue" type="password"></p-inputtext>
       <!-- <p-message :class="styles.message" :life="5000" :sticky="false" severity="success">{{ message.success }}</p-message>
       <p-message :class="styles.message" :icon="'pi-apple'" severity="info">
         {{ message.info }}
